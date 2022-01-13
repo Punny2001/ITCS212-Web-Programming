@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>6288102 Sec1 Q1</title>
+    </head>
+    <body>
+        <form>
+            <fieldset>
+                <legend><h1>Registration</h1></legend>
+                <label for="txtStudentID">Student ID</label>
+                <input type="text" id="txtStudentID" pattern="[0-9]{2}88[0-9]{3}" required title = "##88###"> 
+                <br>
+                <label for="txtFirstname">First name</label>
+                <input type="text" id="txtFirstname" pattern="[A-Za-z]{1,}" title = "Alphabet only">
+                <br>
+                <label for="txtLastname">Last name</label>
+                <input type="text" id="txtLastname" pattern="[A-Za-z]{1,}" title = "Alphabet only">
+                <br>
+                <label for="BD">Birthday</label>
+                <input type="date" id="BD" required min="2000-01-01">
+                <br>
+                Gender:
+                <input type="radio" name="Gender" value="IDK" checked>IDK
+                <input type="radio" name="Gender" value="Female" >Female
+                <input type="radio" name="Gender" value="Male" >Male
+                <br>Hobbies:
+                <br>
+                <input type="checkbox" name="Hobbies" value="Basketball">Basketball
+                <input type="checkbox" name="Hobbies" value="Football">Football
+                <input type="checkbox" name="Hobbies" value="Programming">Programming<br>
+                <input type="checkbox" name="Hobbies" value="Photography">Photography
+                <input type="checkbox" name="Hobbies" value="Gaming">Gaming<br>
+                <br>
+                <button type="submit">Submit</button>
+                <button type="reset">Clear</button>
+            </fieldset>
+        </form>
+    </body>
+</html>

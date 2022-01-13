@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Arrays!!!</title> 
+    <script type="text/javascript">
+        var friends = new Array("Mark", "Boat", "Oat", "Arm", "First"); 
+        Array.prototype.displayItems = function () {
+            for (i = 0; i < this.length; i++) { 
+                console.log(this[i] + "");
+            }  
+        }
+        //Your code here
+        console.log("Friends array");
+        console.log(friends);
+        console.log("The number of items in friends array is " + friends.length);
+        console.log("The SORTED friends array");
+        console.log(friends.sort());
+        console.log("The REVERSED friends array");
+        console.log(friends.reverse());
+        console.log("The friends array after REMOVING the LAST item");
+        friends.pop()
+        console.log(friends);
+        console.log("The friends array after PUSH");
+        friends.push("Nat");
+        console.log(friends);
+    </script>
+
+</head>
+
+<body>
+</body>
+
+</html>

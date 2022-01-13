@@ -1,0 +1,84 @@
+ /* ----------------------------------------------------------
+    Student ID: 6288102   
+    Student Name: Krissanapong Palakham
+    Section: 1
+ ------------------------------------------------------------ */
+ /* Starts your CSS here */
+ 
+ html, body {
+     font-family: sans-serif;
+ }
+ 
+ header, footer {
+     background-color: #2e4053;
+     text-align: center;
+     color: #f8f9f9;
+ }
+ 
+ header h1 {
+     margin-bottom: 0;
+     padding: 20px;
+ }
+ 
+ footer p {
+     padding: 5px;
+ }
+ 
+ .navbar {
+     background-color: #5d6d7e;
+     margin: 0;
+     width: 100%;
+     list-style-type: none;
+     display: flex;
+     flex-direction: row;
+ }
+ 
+ .navbar li {
+     padding: 14px 20px;
+ }
+ 
+ .navbar li a {
+     color: #fdfefe;
+     text-decoration: none;
+ }
+ 
+ .navbar li:hover {
+     background-color: #85929E;
+ }
+ 
+ article {
+     width: 80%;
+     margin: auto;
+     padding-left: 20px;
+     padding-right: 20px;
+ }
+ 
+ .images {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+ }
+ 
+ img {
+     height: 300px;
+     border-radius: 10px;
+ }
+ 
+ img:hover {
+     opacity: 0.8;
+ }
+ 
+ figcaption {
+     font-style: italic;
+ }
+ 
+ a.top {
+     display: block;
+     text-align: center;
+     background-color: #D7DBDD;
+     text-decoration: none;
+ }
+ 
+ a:hover.top {
+     background-color: #48C9B0;
+ }
