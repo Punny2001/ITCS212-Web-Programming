@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6288102_Lab08</title>
+</head>
+
+<body>
+    Email: 
+    <input type="text" id="email"><br><br>
+    <input type="button" value="Search" onclick="getConferenceResponses()">
+    <p id="content"></p>
+
+    <script>
+        function getConferenceResponses(){
+            let email = document.getElementById("email").value; // Get query from a textbox
+            let apiKey = "pzLTchjelZuhjcyqYZ"
+            console.log(email);
+            let rooturl = "https://gender-api.com/get"+"?email="+email+"&key="+apiKey;
+            
+            fetch(rooturl)
+            .then((res) => res.json()) // Get JSON from the response
+            .then((data) => {
+                console.log(data);
+                var ans = `<h4>Name: ${data.first_name} ${data.last_name}.</h4><h4>Gender: ${data.gender}</h4>`
+                document.getElementById("content").innerHTML = ans;
+            })
+            .catch((err) => console.log(err));
+        }
+    </script>
+</body>
+
+</html>

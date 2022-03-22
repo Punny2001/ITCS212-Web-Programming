@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6288102_Lab08</title>
+</head>
+
+<body>
+    Name: 
+    <input type="text" id="name"><br><br>
+    <input type="button" value="Search" onclick="getConferenceResponses()">
+    <div id="content"></div>
+
+    <script>
+        function getConferenceResponses(){
+            let name = document.getElementById("name").value; // Get query from a textbox
+            let apiKey = "pzLTchjelZuhjcyqYZ"
+            console.log(name);
+            let rooturl = "https://gender-api.com/get-country-of-origin"+"?name="+name+"&key="+apiKey;
+            
+            fetch(rooturl)
+            .then((res) => res.json()) // Get JSON from the response
+            .then((data) => {
+                console.log(data);
+                var ans = "<h4>Countries:</h4>";
+                for(let i of data.country_of_origin){
+                    ans+= i.country_name+"<br>"
+                }
+                document.getElementById("content").innerHTML = ans;
+            })
+            .catch((err) => console.log(err));
+        }
+    </script>
+</body>
+
+</html>

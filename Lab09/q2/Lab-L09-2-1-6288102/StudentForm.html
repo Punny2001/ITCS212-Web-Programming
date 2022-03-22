@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta chaset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentForm</title>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+    }</style>
+</head>
+
+<body>
+    <form action="" method="get">
+        <h3>Personal Information</h3>
+        <label for="studentID">Student ID: </label>
+        <input type="text" name="studentID" id="studentID"><br><br>
+        <label for="fname">Firstname: </label>
+        <input type="text" name="fname" id="fname"><br><br>
+        <label for="lname">Lastname: </label>
+        <input type="text" name="lname" id="lname"><br><br>
+        <label for="dob">Birthdate: </label>
+        <input type="date" name="dob" id="dob"><br><br>
+        <label for="phone">Phone Number: </label>
+        <input type="text" name="phone" id="phone"><br><br>
+        <button type="button" onclick="Select()">Select</button>
+        <button type="button" onclick="SelectAll()">SelectAll</button>
+        <button type="button" onclick="Insert()">Insert</button>
+        <button type="button" onclick="Update()">Update</button>
+        <button type="button" onclick="Delete()">Delete</button>
+    </form>
+    <div id="output"></div>
+
+</body>
+
+</html>
+
+<script>
+    async function callStudentWS(url, method, sentData = {}) { 
+        let data;
+        if (method == "SelectAll") {
+            let response = await fetch(url, {
+                method: 'GET'
+            });
+            data = await response.json(); 
+        }
+        else if (method == "Select") {
+            let response = await fetch(url, {
+                method: 'GET'
+            });
+            data = await response.json(); 
+        }
+        else if (method == "Insert") {
+            let response = await fetch(url, {
+                method: 'POST',
+                headers:{
+                    Accept:"application/json", 
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(sentData)
+            });
+            data = await response.json(); 
+        }
+        else if (method == "Update"){
+            let response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    Accept:"application/json", 
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(sentData)
+            });
+            data = await response.json(); 
+        }
+        else if (method == "Delete") {
+            let response = await fetch(url, {
+                method: 'DELETE',
+                headers:{
+                    Accept:"application/json", 
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(sentData)
+            });
+            data = await response.json(); 
+        }
+        return data;
+    }
+
+        function SelectAll(){
+            callStudentWS("http://localhost:3030/student", "SelectAll").then(
+                (data) => {
+                    console.log(data);
+                    var table = `<br><table style="width: 100%"
+                                 <tr>
+                                    <th>StudentID</th>
+                                    <th>Firstname</th>
+                                    <th>Lastname</th>
+                                    <th>Birthdate</th>
+                                    <th>Mobilephone</th>
+                                 </tr>`
+                    for(var i=0; i<data.data.length; i++){
+                        console.log(data.data[i]);
+                        var bd = data.data[i].DOB.substring(0,10)
+                        var stu_data = `<tr>
+                                            <td>${data.data[i].StudentID}</td>
+                                            <td>${data.data[i].Firstname}</td>
+                                            <td>${data.data[i].Lastname}</td>
+                                            <td>${bd}</td>
+                                            <td>${data.data[i].Mobilephone}</td>
+                                        </tr>`
+                        table += stu_data;
+                    }
+                    table += `</table>`;
+                    document.getElementById("output").innerHTML = table;
+                }
+            )
+        }
+        function Select(){
+            student_id = document.getElementById("studentID").value;
+            callStudentWS("http://localhost:3030/student/"+student_id,"Select").then(
+                (data) => {
+                    console.log(data);
+                    document.getElementById("fname").value = data.data.Firstname;
+                    document.getElementById("lname").value = data.data.Lastname;
+                    document.getElementById("dob").value = data.data.DOB.substring(0,10);
+                    document.getElementById("phone").value = data.data.Mobilephone;
+                }
+            )
+        }
+        function Insert(){
+            var stu_data = {
+                student: {
+                    "StudentID": document.getElementById("studentID").value,
+                    "Firstname": document.getElementById("fname").value,
+                    "Lastname": document.getElementById("lname").value,
+                    "DOB": document.getElementById("dob").value,
+                    "Mobilephone": document.getElementById("phone").value
+                }
+            }
+            console.log(stu_data);
+            callStudentWS("http://localhost:3030/insert-student","Insert",stu_data).then(
+                (data) => {
+                    console.log(data);
+                }
+            )
+        }
+        function Update(){
+            var stu_data = {
+                student: {
+                    "StudentID": document.getElementById("studentID").value,
+                    "Firstname": document.getElementById("fname").value,
+                    "Lastname": document.getElementById("lname").value,
+                    "DOB": document.getElementById("dob").value,
+                    "Mobilephone": document.getElementById("phone").value
+                }
+            }
+            console.log(stu_data);
+            callStudentWS("http://localhost:3030/update-student","Update",stu_data).then(
+                (data) => {
+                    console.log(data);
+                }
+            )
+        }
+        function Delete(){
+            var stu_data = {
+                student: {
+                    "StudentID": document.getElementById("studentID").value
+                }
+            }
+            console.log(stu_data);
+            callStudentWS("http://localhost:3030/delete-student","Delete",stu_data).then(
+                (data) => {
+                    console.log(data);
+                }
+            )
+        }
+</script>

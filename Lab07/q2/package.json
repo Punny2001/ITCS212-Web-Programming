@@ -1,0 +1,19 @@
+{
+  "name": "q2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "6288102_sec1_q2.js",
+  "scripts": {
+    "start": "nodemon 6288102_sec1_q2.js"
+  },
+  "author": "Krissanapong Palakham, Sec 1, 6288102",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7"
+  }
+}

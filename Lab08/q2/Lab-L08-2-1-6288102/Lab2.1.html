@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6288102_Lab08</title>
+</head>
+
+<body>
+    Name: 
+    <input type="text" id="name"><br><br>
+    Country:
+    <input type="text" id="country"><br><br>
+    <input type="button" value="Search" onclick="getConferenceResponses()">
+    <p id="content"></p>
+
+    <script>
+        function getConferenceResponses(){
+            let name = document.getElementById("name").value; // Get query from a textbox
+            let country = document.getElementById("country").value;
+            let apiKey = "pzLTchjelZuhjcyqYZ"
+            console.log(name);
+            let rooturl = "https://gender-api.com/get"+"?name="+name+"&country="+country+"&key="+apiKey;
+            
+            fetch(rooturl)
+            .then((res) => res.json()) // Get JSON from the response
+            .then((data) => {
+                console.log(data);
+                var ans = `<h4>Gender: ${data.gender}</h4><h4>Samples: ${data.samples}</h4><h4>Accuracy: ${data.accuracy}</h4>`
+                document.getElementById("content").innerHTML = ans;
+            })
+            .catch((err) => console.log(err));
+        }
+    </script>
+</body>
+
+</html>

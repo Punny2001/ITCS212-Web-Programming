@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html language="en">
+<head>
+  <title>Home</title>
+  <%- include('./partials/style'); %>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <%- include('./partials/header'); %>
+    <!-- Content -->
+    <div class="row p-3" style="margin-top: 30px;">
+    <h3>List of 20 students<br><br><br></h3>
+    <% for(let i=0; i<students.length; i++) { %>
+        <div class="col-sm-4">
+            <div class="card">
+             <div class="card-header" style="background-color: #1A76FC; color: white;" >
+                Student #<%= i+1  %>
+             </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= students[i].firstname+" "+students[i].lastname   %></h5>
+                <p class="card-text">
+                    Age: <%= students[i].age    %><br>
+                    e-mail: <%= students[i].email    %>
+                </p>
+                <br>
+              </div>
+            </div>
+            <br>
+          </div>
+    <% } %>
+    </div>
+    <!-- Footer -->
+    <%- include('./partials/footer'); %>
+  </div>
+</body>
+</html>

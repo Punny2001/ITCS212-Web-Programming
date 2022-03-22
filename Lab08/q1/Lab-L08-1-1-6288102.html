@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6288102_Lab08</title>
+</head>
+
+<body>
+    Search: 
+    <input type="text" id="query">
+    <input type="button" value="Search" onclick="getConferenceResponses()">
+    <p id="content"></p>
+
+    <script>
+        function getConferenceResponses(){
+            let query = document.getElementById("query").value; // Get query from a textbox
+            let apiKey = "0ab71af3c83147c0be8a163f2edf192c"
+            console.log(query);
+            let rooturl = "https://api.spoonacular.com/recipes/complexSearch"+"?query=" + query
+            +"&apiKey=" +apiKey;
+            
+            fetch(rooturl)
+            .then((res) => res.json()) // Get JSON from the response
+            .then((data) => {
+                console.log(data);
+                var ans = "<h1>Food List</h1><ul>";
+                for(let i of data.results){
+                    ans+=`<li><p>${i.title}</p><img src="${i.image}"></li>`
+                }
+                ans+="</ul>"
+                document.getElementById("content").innerHTML = ans;
+            })
+            .catch((err) => console.log(err));
+        }
+    </script>
+</body>
+
+</html>
